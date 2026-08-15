@@ -17,6 +17,7 @@
     --accent: #E8862D;
     --success: #2F7D4F;
     --success-bg: #EAF4EE;
+    --success-text: #137333;
     --radius: 20px;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -35,7 +36,6 @@
     display: flex; flex-direction: column;
     position: relative;
   }
-  /* 状态栏 */
   .statusbar {
     height: 54px; flex: 0 0 auto;
     display: flex; justify-content: space-between; align-items: flex-end;
@@ -45,100 +45,117 @@
   .notch { position: absolute; top: 14px; left: 50%; transform: translateX(-50%);
     width: 120px; height: 28px; background: #232323; border-radius: 16px; }
 
-  /* 内容滚动区 */
-  .content { flex: 1; overflow-y: auto; padding: 4px 20px 96px; }
+  .content { flex: 1; overflow-y: auto; padding: 4px 20px 110px; }
 
-  /* 问候 */
   .greeting { display: flex; justify-content: space-between; align-items: flex-end; margin: 10px 0 14px; }
   .greeting .hi { font-size: 22px; font-weight: 600; color: var(--ink); }
   .greeting .sub { font-size: 15px; color: var(--ink-2); margin-top: 2px; }
   .greeting .date { font-size: 15px; color: var(--ink-2); }
 
-  /* 当前任务卡 */
-  .task-card {
+  /* ===== Hero 主任务卡片 ===== */
+  .hero-card {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    padding: 24px 22px 22px;
-    box-shadow: 0 2px 8px rgba(35,35,35,.04);
-    animation: breathe 3s ease-in-out infinite;
+    padding: 22px 20px 20px;
+    box-shadow: 0 8px 24px rgba(0,0,0,.06);
   }
-  @keyframes breathe {
-    0%, 100% { box-shadow: 0 2px 8px rgba(29,107,168,.06); }
-    50% { box-shadow: 0 2px 18px rgba(29,107,168,.20); }
-  }
-  @media (prefers-reduced-motion: reduce) { .task-card { animation: none; } }
   .task-tag {
     display: inline-flex; align-items: center; gap: 6px;
-    background: #FDF0E3; color: #C05F14;
+    background: #FDF0E3; color: #9E4A0B;
     font-size: 15px; font-weight: 600;
     padding: 6px 12px; border-radius: 999px;
   }
   .task-tag::before { content: "●"; font-size: 10px; }
-  .task-name { font-size: 40px; font-weight: 700; color: var(--ink); margin-top: 18px; line-height: 1.2; }
+  .task-name { font-size: 40px; font-weight: 700; color: var(--ink); margin-top: 14px; line-height: 1.2; }
   .task-dose { font-size: 22px; font-weight: 600; color: var(--ink); margin-top: 4px; }
-  .task-how { font-size: 17px; color: var(--ink); margin-top: 6px; line-height: 1.5; }
-  .task-box { display: flex; align-items: center; gap: 14px; margin-top: 16px; }
-  .task-box .note { flex: 1; font-size: 16px; color: var(--ink); line-height: 1.6; }
-  .pill-box {
-    width: 56px; height: 56px; border-radius: 14px;
-    background: linear-gradient(135deg, #FDF3E7, #F6E3CE);
-    border: 1px solid #EAD9C2;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 14px; font-weight: 600; color: #B05A12; flex: 0 0 auto;
+
+  /* 药盒视觉区：突出图片，看图拿药 */
+  .medicine-visual-box {
+    display: flex; align-items: center; gap: 16px;
+    background: #FBF8F5;
+    border-radius: 14px;
+    padding: 14px 16px;
+    margin: 18px 0 0;
   }
-  .task-actions { display: flex; gap: 12px; margin-top: 20px; }
+  .box-img {
+    width: 72px; height: 72px; border-radius: 12px;
+    background: linear-gradient(135deg, #FDF3E7, #F0DFC8);
+    border: 1px solid #E4D3BC;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 5px; flex-shrink: 0;
+  }
+  .box-img .capsule {
+    width: 46px; height: 22px;
+    background: linear-gradient(90deg, #E8862D 50%, #F6C98B 50%);
+    border-radius: 11px;
+    position: relative;
+    box-shadow: inset 0 -2px 3px rgba(0,0,0,.08);
+  }
+  .box-img .capsule::after {
+    content: ""; position: absolute; left: 50%; top: -2px; bottom: -2px;
+    width: 2px; background: rgba(0,0,0,.10);
+  }
+  .box-img .capsule-name { font-size: 12px; font-weight: 700; color: #9E4A0B; }
+  .visual-hint { font-size: 17px; font-weight: 500; color: var(--ink); line-height: 1.5; }
+  .visual-hint small { display: block; font-size: 15px; font-weight: 400; color: var(--ink-2); margin-top: 2px; }
+
+  /* 按钮组：上下堆叠，主按钮在下（拇指热区），防横向误触 */
+  .action-button-group {
+    display: flex; flex-direction: column; gap: 12px;
+    margin-top: 18px;
+  }
   .btn {
-    border: none; border-radius: 16px;
-    font-size: 18px; font-weight: 600;
-    height: 56px; cursor: pointer;
+    width: 100%; border: none; cursor: pointer;
     font-family: inherit;
+    display: flex; align-items: center; justify-content: center;
     transition: transform .12s ease-out, background .12s ease-out;
   }
-  .btn:active { transform: scale(.97); }
-  .btn-primary { flex: 1.6; background: var(--primary-deep); color: #fff; }
-  .btn-primary:active { background: #0F4A78; }
-  .btn-ghost {
-    flex: 1; background: var(--surface); color: var(--primary);
-    border: 2px solid var(--primary);
+  .btn:active { transform: scale(.98); }
+  .btn-secondary-repeat {
+    height: 48px;
+    background: #F0F7FF; color: var(--primary-deep);
+    border: 1.5px solid var(--primary-deep);
+    border-radius: 24px;
+    font-size: 18px; font-weight: 600;
   }
+  .btn-primary-done {
+    height: 56px;
+    background: var(--primary-deep); color: #fff;
+    border-radius: 28px;
+    font-size: 20px; font-weight: 700;
+    box-shadow: 0 4px 12px rgba(21,90,143,.35);
+  }
+  .btn-primary-done:active { background: #0F4A78; }
 
-  /* 今日计划 */
+  /* ===== 今日计划时间轴（含药丸色点） ===== */
   .section-title { font-size: 18px; font-weight: 600; color: var(--ink); margin: 22px 0 10px; }
   .plan { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
   .plan-row {
-    display: flex; align-items: center; gap: 14px;
-    padding: 14px 16px;
+    display: flex; align-items: center; gap: 12px;
+    padding: 13px 16px;
     border-bottom: 1px solid var(--border);
   }
   .plan-row:last-child { border-bottom: none; }
+  .pill-dot {
+    width: 22px; height: 22px; border-radius: 50%;
+    border: 1px solid rgba(0,0,0,.08); flex: 0 0 auto;
+  }
   .plan-time { font-size: 17px; font-weight: 600; color: var(--ink); width: 58px; flex: 0 0 auto; }
   .plan-name { flex: 1; font-size: 17px; color: var(--ink); }
   .plan-done .plan-time, .plan-done .plan-name { color: #9A9A9A; text-decoration: line-through; }
-  .plan-done .plan-badge { background: var(--success-bg); color: var(--success); }
   .plan-now { background: #EFF5FB; }
   .plan-now .plan-name { font-weight: 600; color: var(--primary); }
   .plan-badge {
-    font-size: 13px; font-weight: 600;
-    padding: 4px 10px; border-radius: 999px;
+    font-size: 15px; font-weight: 700;
+    padding: 4px 12px; border-radius: 12px;
     background: var(--bg); color: var(--ink-2);
     flex: 0 0 auto; white-space: nowrap;
   }
+  /* 已吃：AA 达标深绿（5.2:1） */
+  .plan-done .plan-badge { background: #E6F4EA; color: var(--success-text); }
   .plan-now .plan-badge { background: var(--primary); color: #fff; }
-
-  /* 药盒区 */
-  .pills { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 4px; }
-  .pill-item {
-    flex: 0 0 auto; width: 96px;
-    background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
-    padding: 12px 8px;
-    display: flex; flex-direction: column; align-items: center; gap: 8px;
-  }
-  .pill-color {
-    width: 44px; height: 44px; border-radius: 50%;
-    border: 1px solid rgba(0,0,0,.08);
-  }
-  .pill-name { font-size: 15px; font-weight: 500; color: var(--ink); text-align: center; line-height: 1.3; }
 
   /* 底部导航 */
   .tabbar {
@@ -173,67 +190,57 @@
       <div class="date">8月16日<br>周六</div>
     </div>
 
-    <!-- 当前任务卡 -->
-    <div class="task-card">
+    <!-- Hero 主任务卡片 -->
+    <div class="hero-card">
       <span class="task-tag">现在该吃药 · 早餐后</span>
       <div class="task-name">阿司匹林</div>
-      <div class="task-dose">1 粒</div>
-      <div class="task-how">用温水送服</div>
-      <div class="task-box">
-        <div class="pill-box">药盒</div>
-        <div class="note">
-          阿司匹林，1 粒，早餐后服用<br>如果有不舒服，请告诉家人
+      <div class="task-dose">1 粒 · 用温水送服</div>
+
+      <!-- 药盒视觉：看图拿药 -->
+      <div class="medicine-visual-box">
+        <div class="box-img">
+          <div class="capsule"></div>
+          <span class="capsule-name">阿司匹林</span>
+        </div>
+        <div class="visual-hint">
+          照着这个药盒拿药
+          <small>吃完记得点下面的大按钮</small>
         </div>
       </div>
-      <div class="task-actions">
-        <button class="btn btn-primary">我吃好了</button>
-        <button class="btn btn-ghost">再说一遍</button>
+
+      <!-- 按钮组：上下堆叠防误触 -->
+      <div class="action-button-group">
+        <button class="btn btn-secondary-repeat">再说一遍</button>
+        <button class="btn btn-primary-done">我吃好了</button>
       </div>
     </div>
 
-    <!-- 今日计划 -->
+    <!-- 今日计划时间轴 -->
     <div class="section-title">今天的药</div>
     <div class="plan">
       <div class="plan-row plan-done">
+        <span class="pill-dot" style="background:#C9E2F4;"></span>
         <span class="plan-time">7:30</span>
         <span class="plan-name">格列美脲</span>
         <span class="plan-badge">✓ 已吃</span>
       </div>
       <div class="plan-row plan-now">
+        <span class="pill-dot" style="background:#F6D7A8;"></span>
         <span class="plan-time">8:00</span>
         <span class="plan-name">阿司匹林</span>
         <span class="plan-badge">现在</span>
       </div>
       <div class="plan-row">
+        <span class="pill-dot" style="background:#D9E8D0;"></span>
         <span class="plan-time">12:30</span>
         <span class="plan-name">阿卡波糖</span>
         <span class="plan-badge">待吃</span>
       </div>
       <div class="plan-row">
+        <span class="pill-dot" style="background:#E3D6EF;"></span>
         <span class="plan-time">18:30</span>
         <span class="plan-name">阿托伐他汀</span>
         <span class="plan-badge">待吃</span>
-      </div>
-    </div>
-
-    <!-- 药盒区 -->
-    <div class="section-title">今天的药盒</div>
-    <div class="pills">
-      <div class="pill-item">
-        <div class="pill-color" style="background:#C9E2F4;"></div>
-        <div class="pill-name">格列美脲</div>
-      </div>
-      <div class="pill-item">
-        <div class="pill-color" style="background:#F6D7A8;"></div>
-        <div class="pill-name">阿司匹林</div>
-      </div>
-      <div class="pill-item">
-        <div class="pill-color" style="background:#D9E8D0;"></div>
-        <div class="pill-name">阿卡波糖</div>
-      </div>
-      <div class="pill-item">
-        <div class="pill-color" style="background:#E3D6EF;"></div>
-        <div class="pill-name">阿托伐他汀</div>
       </div>
     </div>
   </div>
