@@ -98,8 +98,11 @@
     width: 2px; background: rgba(0,0,0,.10);
   }
   .box-img .capsule-name { font-size: 12px; font-weight: 700; color: #9E4A0B; }
-  .visual-hint { font-size: 17px; font-weight: 500; color: var(--ink); line-height: 1.5; }
-  .visual-hint small { display: block; font-size: 15px; font-weight: 400; color: var(--ink-2); margin-top: 2px; }
+  .visual-hint { font-size: 19px; font-weight: 700; color: var(--ink); line-height: 1.5; }
+  .visual-hint small {
+    display: block; margin-top: 4px;
+    font-size: 17px; font-weight: 700; color: var(--primary-deep);
+  }
 
   /* 按钮组：上下堆叠，主按钮在下（拇指热区），防横向误触 */
   .action-button-group {
@@ -144,7 +147,8 @@
   }
   .plan-time { font-size: 17px; font-weight: 600; color: var(--ink); width: 58px; flex: 0 0 auto; }
   .plan-name { flex: 1; font-size: 17px; color: var(--ink); }
-  .plan-done .plan-time, .plan-done .plan-name { color: #9A9A9A; text-decoration: line-through; }
+  /* 已吃行：灰色加深至 AA 达标（#767676 = 4.55:1） */
+  .plan-done .plan-time, .plan-done .plan-name { color: #767676; text-decoration: line-through; }
   .plan-now { background: #EFF5FB; }
   .plan-now .plan-name { font-weight: 600; color: var(--primary); }
   .plan-badge {
@@ -203,8 +207,8 @@
           <span class="capsule-name">阿司匹林</span>
         </div>
         <div class="visual-hint">
-          照着这个药盒拿药
-          <small>吃完记得点下面的大按钮</small>
+          照着药盒拿药
+          <small>吃完点【我吃好了】</small>
         </div>
       </div>
 
