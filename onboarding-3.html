@@ -83,7 +83,15 @@
     font-size: 22px; font-weight: 700; color: var(--ink); text-decoration: none;
     position: static; flex: 0 0 auto;
   }
-  .back-btn:active { transform: scale(.94); }</style>
+  .back-btn:active { transform: scale(.94); }  /* 底部按钮组：统一等距 */
+  .action-group {
+    margin-top: auto;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .action-group .btn { margin-top: 0; }
+  .action-group .btn-ghost { margin-top: 0; }
+  .action-group .btn-no-allergy, .action-group .btn-add-allergy { margin-top: 0; }
+</style>
 </head>
 <body>
 <div class="phone">
@@ -131,13 +139,14 @@
       </div>
     </div>
 
-    <div class="allergy-actions">
-      <button class="btn-no-allergy">我没有过敏</button>
-      <button class="btn-add-allergy">＋ 点此添加过敏药</button>
+    <div class="action-group">
+      <div class="allergy-actions">
+        <button class="btn-no-allergy">我没有过敏</button>
+        <button class="btn-add-allergy">＋ 点此添加过敏药</button>
+      </div>
+      <a class="btn" href="index.html" onclick="try{localStorage.setItem('hasOnboarded','true')}catch(e){}">对，就这些，开始用药</a>
+      <a class="btn-ghost" href="onboarding-2.html">不对，我要改</a>
     </div>
-
-    <a class="btn" href="index.html" onclick="try{localStorage.setItem('hasOnboarded','true')}catch(e){}">对，就这些，开始用药</a>
-    <a class="btn-ghost" href="onboarding-2.html">不对，我要改</a>
   </div>
 </div>
 </body>
