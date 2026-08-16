@@ -71,9 +71,9 @@
     font-size: 18px; font-weight: 700;
   }
 
-  .btn { width: 100%; height: 60px; border: none; border-radius: var(--radius-btn); cursor: pointer; font-family: inherit; font-size: 21px; font-weight: 700; color: #fff; background: linear-gradient(135deg, #00897B, #00695C); margin-top: auto; box-shadow: 0 12px 24px -6px rgba(0,121,107,.3); transition: all .25s cubic-bezier(.34,1.56,.64,1); }
+  .btn { width: 100%; height: 60px; display: flex; align-items: center; justify-content: center; text-decoration: none; border: none; border-radius: var(--radius-btn); cursor: pointer; font-family: inherit; font-size: 21px; font-weight: 700; color: #fff; background: linear-gradient(135deg, #00897B, #00695C); margin-top: auto; box-shadow: 0 12px 24px -6px rgba(0,121,107,.3); transition: all .25s cubic-bezier(.34,1.56,.64,1); }
   .btn:active { transform: scale(.96); }
-  .btn-ghost { width: 100%; height: 50px; margin-top: 12px; border-radius: var(--radius-btn); background: var(--surface); color: var(--primary-deep); font-size: 19px; font-weight: 700; border: 1.5px solid var(--primary); box-shadow: none; cursor: pointer; font-family: inherit; }
+  .btn-ghost { display: flex; align-items: center; justify-content: center; text-decoration: none; width: 100%; height: 50px; margin-top: 12px; border-radius: var(--radius-btn); background: var(--surface); color: var(--primary-deep); font-size: 19px; font-weight: 700; border: 1.5px solid var(--primary); box-shadow: none; cursor: pointer; font-family: inherit; }
 </style>
 </head>
 <body>
@@ -126,8 +126,8 @@
       <button class="btn-add-allergy">＋ 点此添加过敏药</button>
     </div>
 
-    <button class="btn">对，就这些，开始用药</button>
-    <button class="btn-ghost">不对，我要改</button>
+    <a class="btn" href="index.html">对，就这些，开始用药</a>
+    <a class="btn-ghost" href="onboarding-2.html">不对，我要改</a>
   </div>
 </div>
 </body>
