@@ -7,95 +7,147 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/misans-webfont@4.3.1/index.css">
 <style>
   :root {
-    --bg: #FBF9F5; --card: #FFFFFF; --border-soft: #F0EAE1;
-    --ink: #2D3142; --ink-2: #6C757D;
+    --bg-main: #FBF9F5; --card-bg: #FFFFFF;
     --primary: #00796B; --primary-deep: #00695C; --primary-light: #E6F6F2;
-    --radius: 24px; --radius-btn: 999px;
+    --text-main: #2D3142; --text-sub: #7D8597;
+    --border-soft: #F0EAE1;
+    --radius-card: 24px; --radius-btn: 999px;
     --shadow-smooth: 0 10px 30px -5px rgba(45,49,66,.05), 0 4px 12px -2px rgba(45,49,66,.03);
+    --shadow-pressed: inset 0 2px 6px rgba(0,0,0,.06);
   }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
   body {
     font-family: "MiSans", "HarmonyOS Sans SC", "OPPO Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
-    background: #E8E4DC; display: flex; justify-content: center; min-height: 100vh;
+    background-color: var(--bg-main); color: var(--text-main);
+    max-width: 480px; margin: 0 auto; padding: 28px 16px 44px; line-height: 1.5;
   }
-  .wrap { max-width: 460px; width: 100%; padding: 32px 20px 48px; }
-  h1 { font-size: 28px; font-weight: 700; color: var(--ink); }
-  .sub { font-size: 16px; color: var(--ink-2); margin-top: 6px; line-height: 1.6; }
-  .section { margin-top: 28px; font-size: 18px; font-weight: 700; color: var(--ink); }
-  .grid { margin-top: 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .card {
-    background: var(--card); border: 1px solid var(--border-soft); border-radius: 20px;
-    padding: 16px; text-decoration: none; display: block;
-    box-shadow: var(--shadow-smooth);
-    transition: all .25s cubic-bezier(.34,1.56,.64,1);
+  .header { margin-bottom: 24px; padding: 8px 8px 0; }
+  .header h1 { font-size: 26px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+  .header p { font-size: 15px; color: var(--text-sub); margin-top: 6px; }
+
+  .page-list { display: flex; flex-direction: column; gap: 16px; }
+
+  .page-item {
+    background: var(--card-bg); border-radius: var(--radius-card); padding: 20px;
+    box-shadow: var(--shadow-smooth); border: 2px solid var(--border-soft);
+    display: flex; align-items: center; justify-content: space-between;
+    text-decoration: none; color: inherit;
+    transition: all .3s cubic-bezier(.34,1.56,.64,1);
   }
-  .card:hover { transform: translateY(-3px); }
-  .card .c-icon { font-size: 30px; }
-  .card .c-name { font-size: 17px; font-weight: 700; color: var(--ink); margin-top: 8px; }
-  .card .c-desc { font-size: 14px; color: var(--ink-2); margin-top: 3px; line-height: 1.5; }
-  .card.full { grid-column: 1 / -1; display: flex; align-items: center; gap: 14px; }
-  .card.full .c-icon { font-size: 36px; }
-  .tip {
-    margin-top: 24px; padding: 14px 16px; background: var(--primary-light);
-    border-radius: 16px; font-size: 15px; color: var(--primary-deep); line-height: 1.6;
+  .page-item:hover { transform: translateY(-3px); }
+  .page-item:active {
+    transform: scale(.97); box-shadow: var(--shadow-pressed); background-color: #FAFAFA;
+  }
+  .page-info { display: flex; align-items: center; gap: 16px; }
+  .page-icon {
+    width: 48px; height: 48px; background-color: var(--primary-light);
+    border-radius: 16px; display: flex; align-items: center; justify-content: center;
+    font-size: 22px; flex-shrink: 0;
+  }
+  .page-details { display: flex; flex-direction: column; }
+  .page-title { font-size: 19px; font-weight: 700; color: var(--text-main); }
+  .page-desc { font-size: 14px; color: var(--text-sub); margin-top: 2px; }
+  .enter-btn {
+    background-color: var(--primary-light); color: var(--primary-deep);
+    font-size: 14px; font-weight: 700; padding: 8px 16px;
+    border-radius: var(--radius-btn); white-space: nowrap;
+  }
+
+  .footer-note {
+    margin-top: 32px; padding: 16px 20px; background: #FFF8E7;
+    border-left: 4px solid var(--primary); border-radius: 18px;
+    font-size: 14px; color: #8A6D3B; display: flex; align-items: flex-start; gap: 10px; line-height: 1.7;
   }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <h1>安心用药 · 原型导览</h1>
-  <div class="sub">产品经理面试作品集 · 7 个高保真页面<br>点击卡片即可进入，页面之间可以点击跳转</div>
+  <div class="header">
+    <h1>💊 安心用药</h1>
+    <p>高保真原型 · 7 个页面 · 点击进入（页面间可跳转）</p>
+  </div>
 
-  <div class="section">📱 核心流程</div>
-  <div class="grid">
-    <a class="card full" href="index.html">
-      <div class="c-icon">🏠</div>
-      <div><div class="c-name">首页（主界面）</div><div class="c-desc">现在该吃什么 · 今日计划 · 药盒对照</div></div>
+  <div class="page-list">
+    <a href="index.html" class="page-item">
+      <div class="page-info">
+        <div class="page-icon">🏠</div>
+        <div class="page-details">
+          <span class="page-title">1. 首页</span>
+          <span class="page-desc">用药提醒与打卡主界面</span>
+        </div>
+      </div>
+      <span class="enter-btn">打开 ›</span>
     </a>
-    <a class="card" href="onboarding-1.html">
-      <div class="c-icon">👋</div>
-      <div class="c-name">建档 1 · 欢迎</div>
-      <div class="c-desc">小安引导老人开始</div>
+
+    <a href="onboarding-1.html" class="page-item">
+      <div class="page-info">
+        <div class="page-icon">👋</div>
+        <div class="page-details">
+          <span class="page-title">2. 欢迎页</span>
+          <span class="page-desc">建档 Step 1 · 小安引导</span>
+        </div>
+      </div>
+      <span class="enter-btn">打开 ›</span>
     </a>
-    <a class="card" href="onboarding-2.html">
-      <div class="c-icon">🎤</div>
-      <div class="c-name">建档 2 · 录入</div>
-      <div class="c-desc">语音/拍药盒录入</div>
+
+    <a href="onboarding-2.html" class="page-item">
+      <div class="page-info">
+        <div class="page-icon">🎙️</div>
+        <div class="page-details">
+          <span class="page-title">3. 语音 / 拍照录入</span>
+          <span class="page-desc">建档 Step 2 · 添加药品</span>
+        </div>
+      </div>
+      <span class="enter-btn">打开 ›</span>
     </a>
-    <a class="card" href="onboarding-3.html">
-      <div class="c-icon">✅</div>
-      <div class="c-name">建档 3 · 确认</div>
-      <div class="c-desc">核对计划 + 过敏确认</div>
+
+    <a href="onboarding-3.html" class="page-item">
+      <div class="page-info">
+        <div class="page-icon">📋</div>
+        <div class="page-details">
+          <span class="page-title">4. 计划确认</span>
+          <span class="page-desc">建档 Step 3 · 播报与确认</span>
+        </div>
+      </div>
+      <span class="enter-btn">打开 ›</span>
+    </a>
+
+    <a href="assistant.html" class="page-item">
+      <div class="page-info">
+        <div class="page-icon">🤖</div>
+        <div class="page-details">
+          <span class="page-title">5. AI 小助手</span>
+          <span class="page-desc">医嘱问答 · 医疗边界</span>
+        </div>
+      </div>
+      <span class="enter-btn">打开 ›</span>
+    </a>
+
+    <a href="family.html" class="page-item">
+      <div class="page-info">
+        <div class="page-icon">👨‍👩‍👧</div>
+        <div class="page-details">
+          <span class="page-title">6. 家人</span>
+          <span class="page-desc">确认状态 · 代打卡</span>
+        </div>
+      </div>
+      <span class="enter-btn">打开 ›</span>
+    </a>
+
+    <a href="profile.html" class="page-item">
+      <div class="page-info">
+        <div class="page-icon">⚙️</div>
+        <div class="page-details">
+          <span class="page-title">7. 我的</span>
+          <span class="page-desc">用药档案 · 提醒设置</span>
+        </div>
+      </div>
+      <span class="enter-btn">打开 ›</span>
     </a>
   </div>
 
-  <div class="section">🧭 四个主 Tab</div>
-  <div class="grid">
-    <a class="card" href="assistant.html">
-      <div class="c-icon">🤖</div>
-      <div class="c-name">AI 小助手</div>
-      <div class="c-desc">语音问答 · 医疗边界</div>
-    </a>
-    <a class="card" href="family.html">
-      <div class="c-icon">👨‍👩‍👧</div>
-      <div class="c-name">家人</div>
-      <div class="c-desc">确认状态 · 代打卡</div>
-    </a>
-    <a class="card" href="profile.html">
-      <div class="c-icon">⚙️</div>
-      <div class="c-name">我的</div>
-      <div class="c-desc">用药档案 · 提醒设置</div>
-    </a>
-    <a class="card" href="index.html">
-      <div class="c-icon">🔙</div>
-      <div class="c-name">返回首页</div>
-      <div class="c-desc">主界面</div>
-    </a>
+  <div class="footer-note">
+    <span>💡</span>
+    <div>针对 78 岁老人设计：24px 大圆角 · 奶油暖底 · 弹性触感动效 · 高对比度字号 · 医疗边界明确。</div>
   </div>
-
-  <div class="tip">
-    💡 <b>演示小贴士</b>：先讲首页"现在该吃药"的适老设计 → 走一遍建档流程（老人第一次用）→ 展示 AI 助手的安全边界 → 家人页的"未确认→代打卡"闭环。这就是完整的面试故事线。
-  </div>
-</div>
 </body>
 </html>
