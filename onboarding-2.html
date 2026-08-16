@@ -107,12 +107,15 @@
 <div class="phone">
   <a class="back-btn" href="onboarding-1.html" aria-label="返回">‹</a>
   <div class="notch"></div>
-  <div class="statusbar"><span>9:41</span><span>📶 🔋</span></div>
+  <div class="statusbar"><span>9:41</span><span><svg width="18" height="12" viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="0.8" fill="#2D3142"/><rect x="5" y="5" width="3" height="7" rx="0.8" fill="#2D3142"/><rect x="10" y="2.5" width="3" height="9.5" rx="0.8" fill="#2D3142"/><rect x="15" y="0" width="3" height="12" rx="0.8" fill="#2D3142" opacity="0.3"/></svg> <svg width="26" height="12" viewBox="0 0 26 12"><rect x="0.5" y="0.5" width="21" height="11" rx="3.5" fill="none" stroke="#2D3142" stroke-width="1.2"/><rect x="2.5" y="2.5" width="14" height="7" rx="1.5" fill="#2D3142"/><rect x="23.5" y="3.5" width="2.5" height="5" rx="1.2" fill="#2D3142"/></svg></span></div>
   <div class="content">
     <div class="progress"><div class="bar on"></div><div class="bar on"></div><div class="bar"></div></div>
 
     <div class="ai-bubble">
-      <div class="ai-avatar">💊</div>
+      <div class="ai-avatar"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M22 12H18L15 21L9 3L6 12H2" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+</div>
       <div>奶奶，您需要吃什么药？<br>直接告诉我名字就行</div>
     </div>
     <div class="ai-voice">
@@ -121,7 +124,160 @@
     </div>
 
     <div class="mic-area">
-      <button class="mic-btn"><svg width="40" height="40" viewBox="0 0 24 24" fill="#fff"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.91-3c-.49 0-.9.36-.98.85C16.52 14.2 14.47 16 12 16s-4.52-1.8-4.93-4.15c-.08-.49-.49-.85-.98-.85-.61 0-1.09.54-1 1.14.49 3 2.89 5.35 5.91 5.78V20c0 .55.45 1 1 1s1-.45 1-1v-2.08c3.02-.43 5.42-2.78 5.91-5.78.1-.6-.39-1.14-1-1.14z"/></svg></button>
+      <button class="mic-btn"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_4039_12336)">
+<path d="M5 10V12C5 13.8565 5.7375 15.637 7.05025 16.9497C8.36301 18.2625 10.1435 19 12 19C13.8565 19 15.637 18.2625 16.9497 16.9497C18.2625 15.637 19 13.8565 19 12V10M12 19V23M8 23H16M12 1C11.2044 1 10.4413 1.31607 9.87868 1.87868C9.31607 2.44129 9 3.20435 9 4V12C9 12.7956 9.31607 13.5587 9.87868 14.1213C10.4413 14.6839 11.2044 15 12 15C12.7956 15 13.5587 14.6839 14.1213 14.1213C14.6839 13.5587 15 12.7956 15 12V4C15 3.20435 14.6839 2.44129 14.1213 1.87868C13.5587 1.31607 12.7956 1 12 1Z" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_4039_12336">
+<rect width="24" height="24" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</button>
+      <div class="mic-hint">按住说话</div>
+      <div class="mic-sub">或者点下面的相机拍药盒</div>
+    </div>
+
+    <div class="camera-row">
+      <div class="camera-card">
+        <div class="cam-icon"><!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>安心用药 · 建档 2/3</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/misans-webfont@4.3.1/index.css">
+<style>
+  :root {
+    --bg: #FBF9F5; --surface: #FFFFFF; --border: #F0EAE1;
+    --ink: #2D3142; --ink-2: #6C757D;
+    --primary: #00796B; --primary-deep: #00695C; --primary-light: #E6F6F2;
+    --success: #2F7D4F; --success-bg: #E6F4EA; --success-text: #137333;
+    --radius: 24px; --radius-btn: 999px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "MiSans", "HarmonyOS Sans SC", "OPPO Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #D8D6D0; display: flex; justify-content: center; align-items: center; min-height: 100vh;
+  }
+  .phone {
+    width: 390px; height: 844px; background: var(--bg); border-radius: 44px; overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,.25); display: flex; flex-direction: column; position: relative;
+  }
+  .statusbar { height: 54px; flex: 0 0 auto; display: flex; justify-content: space-between; align-items: flex-end; padding: 0 24px 8px; font-size: 15px; font-weight: 600; color: var(--ink); }
+  .notch { position: absolute; top: 14px; left: 50%; transform: translateX(-50%); width: 120px; height: 28px; background: #232323; border-radius: 16px; }
+  .content { flex: 1; overflow-y: auto; padding: 10px 24px 30px; display: flex; flex-direction: column; }
+  .progress { display: flex; gap: 6px; margin: 4px 0 20px; }
+  .progress .bar { flex: 1; height: 6px; border-radius: 3px; background: #E5E3DC; }
+  .progress .bar.on { background: var(--primary); }
+
+  /* AI 对话区 */
+  .ai-bubble {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 18px;
+    padding: 18px 18px; font-size: 19px; font-weight: 600; color: var(--ink); line-height: 1.5;
+    display: flex; gap: 12px; align-items: flex-start;
+  }
+  .ai-avatar {
+    width: 40px; height: 40px; border-radius: 12px; flex: 0 0 auto;
+    background: linear-gradient(135deg, var(--primary), #3E8BC8);
+    display: flex; align-items: center; justify-content: center; font-size: 20px;
+  }
+  .ai-voice { margin-top: 10px; display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--ink-2); }
+  .ai-voice .dots { display: flex; gap: 4px; }
+  .ai-voice .dots i { width: 6px; height: 6px; border-radius: 50%; background: var(--primary); animation: dot 1s infinite; }
+  .ai-voice .dots i:nth-child(2) { animation-delay: .2s; }
+  .ai-voice .dots i:nth-child(3) { animation-delay: .4s; }
+  @keyframes dot { 0%,100% { opacity: .3; } 50% { opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) { .ai-voice .dots i { animation: none; } }
+
+  /* 录音大按钮 */
+  .mic-area { margin: 32px auto 0; text-align: center; }
+  .mic-btn {
+    width: 96px; height: 96px; border-radius: 50%; border: none; cursor: pointer;
+    background: linear-gradient(135deg, #00897B, #00695C); color: #fff; font-size: 40px;
+    box-shadow: 0 12px 24px -6px rgba(0,121,107,.35);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto; transition: all .25s cubic-bezier(.34,1.56,.64,1);
+  }
+  .mic-btn:active { transform: scale(.95); }
+  .mic-hint { margin-top: 14px; font-size: 17px; font-weight: 600; color: var(--ink); }
+  .mic-sub { margin-top: 4px; font-size: 15px; color: var(--ink-2); }
+
+  /* 拍照识别 */
+  .camera-row { margin-top: 28px; }
+  .camera-card {
+    display: flex; align-items: center; gap: 14px;
+    background: var(--surface); border: 1.5px dashed var(--primary);
+    border-radius: 16px; padding: 16px;
+  }
+  .camera-card .cam-icon {
+    width: 52px; height: 52px; border-radius: 14px; background: #EFF5FB;
+    display: flex; align-items: center; justify-content: center; font-size: 24px; flex: 0 0 auto;
+  }
+  .camera-card .cam-text { font-size: 17px; font-weight: 600; color: var(--primary-deep); }
+  .camera-card .cam-sub { font-size: 15px; color: var(--ink-2); margin-top: 2px; }
+
+  /* 识别结果（示例） */
+  .result {
+    margin-top: 24px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 16px;
+  }
+  .result-title { font-size: 15px; color: var(--ink-2); margin-bottom: 8px; }
+  .result-row { display: flex; align-items: center; gap: 12px; }
+  .result-pill {
+    width: 44px; height: 22px; border-radius: 11px; flex: 0 0 auto;
+    background: linear-gradient(90deg, #E8862D 50%, #F6C98B 50%);
+  }
+  .result-name { font-size: 19px; font-weight: 700; color: var(--ink); flex: 1; }
+  .result-edit { font-size: 16px; font-weight: 600; color: var(--primary-deep); background: none; border: none; cursor: pointer; font-family: inherit; }
+  .result-note { margin-top: 8px; font-size: 15px; color: var(--success-text); font-weight: 600; }
+
+  .btn { width: 100%; height: 60px; display: flex; align-items: center; justify-content: center; text-decoration: none; border: none; border-radius: var(--radius-btn); cursor: pointer; font-family: inherit; font-size: 21px; font-weight: 700; color: #fff; background: linear-gradient(135deg, #00897B, #00695C); margin-top: 24px; box-shadow: 0 12px 24px -6px rgba(0,121,107,.3); transition: all .25s cubic-bezier(.34,1.56,.64,1); }
+  .btn:active { transform: scale(.96); }
+  .back-btn {
+    position: absolute; top: 60px; left: 16px; z-index: 20;
+    width: 44px; height: 44px; border-radius: 50%;
+    background: rgba(255,255,255,.88);
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    box-shadow: 0 2px 8px rgba(0,0,0,.10);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; font-weight: 700; color: var(--ink); text-decoration: none;
+  }
+  .back-btn:active { transform: scale(.92); }
+</style>
+</head>
+<body>
+<div class="phone">
+  <a class="back-btn" href="onboarding-1.html" aria-label="返回">‹</a>
+  <div class="notch"></div>
+  <div class="statusbar"><span>9:41</span><span><svg width="18" height="12" viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="0.8" fill="#2D3142"/><rect x="5" y="5" width="3" height="7" rx="0.8" fill="#2D3142"/><rect x="10" y="2.5" width="3" height="9.5" rx="0.8" fill="#2D3142"/><rect x="15" y="0" width="3" height="12" rx="0.8" fill="#2D3142" opacity="0.3"/></svg> <svg width="26" height="12" viewBox="0 0 26 12"><rect x="0.5" y="0.5" width="21" height="11" rx="3.5" fill="none" stroke="#2D3142" stroke-width="1.2"/><rect x="2.5" y="2.5" width="14" height="7" rx="1.5" fill="#2D3142"/><rect x="23.5" y="3.5" width="2.5" height="5" rx="1.2" fill="#2D3142"/></svg></span></div>
+  <div class="content">
+    <div class="progress"><div class="bar on"></div><div class="bar on"></div><div class="bar"></div></div>
+
+    <div class="ai-bubble">
+      <div class="ai-avatar"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M22 12H18L15 21L9 3L6 12H2" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+</div>
+      <div>奶奶，您需要吃什么药？<br>直接告诉我名字就行</div>
+    </div>
+    <div class="ai-voice">
+      <span class="dots"><i></i><i></i><i></i></span>
+      <span>正在播报语音…</span>
+    </div>
+
+    <div class="mic-area">
+      <button class="mic-btn"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_4039_12336)">
+<path d="M5 10V12C5 13.8565 5.7375 15.637 7.05025 16.9497C8.36301 18.2625 10.1435 19 12 19C13.8565 19 15.637 18.2625 16.9497 16.9497C18.2625 15.637 19 13.8565 19 12V10M12 19V23M8 23H16M12 1C11.2044 1 10.4413 1.31607 9.87868 1.87868C9.31607 2.44129 9 3.20435 9 4V12C9 12.7956 9.31607 13.5587 9.87868 14.1213C10.4413 14.6839 11.2044 15 12 15C12.7956 15 13.5587 14.6839 14.1213 14.1213C14.6839 13.5587 15 12.7956 15 12V4C15 3.20435 14.6839 2.44129 14.1213 1.87868C13.5587 1.31607 12.7956 1 12 1Z" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_4039_12336">
+<rect width="24" height="24" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</button>
       <div class="mic-hint">按住说话</div>
       <div class="mic-sub">或者点下面的相机拍药盒</div>
     </div>
@@ -129,6 +285,29 @@
     <div class="camera-row">
       <div class="camera-card">
         <div class="cam-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="#00796B"><path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4zM9 2 7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/></svg></div>
+        <div>
+          <div class="cam-text">拍药盒 / 拍处方</div>
+          <div class="cam-sub">对准药盒上的字，我来帮您认</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="result">
+      <div class="result-title">我听到的是：</div>
+      <div class="result-row">
+        <div class="result-pill"></div>
+        <div class="result-name">阿莫西林</div>
+        <button class="result-edit">✏️ 不对，修改</button>
+      </div>
+      <div class="result-note">✅ 已记住：阿莫西林，胶囊</div>
+    </div>
+
+    <a class="btn" href="onboarding-3.html">继续，说用量</a>
+  </div>
+</div>
+</body>
+</html>
+</div>
         <div>
           <div class="cam-text">拍药盒 / 拍处方</div>
           <div class="cam-sub">对准药盒上的字，我来帮您认</div>
