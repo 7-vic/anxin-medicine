@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>安心用药 · 建档 3/3</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/misans-webfont@4.3.1/index.css">
+<style>
+  :root {
+    --bg: #F7F6F2; --surface: #FFFFFF; --border: #E5E3DC;
+    --ink: #232323; --ink-2: #6B6B6B;
+    --primary: #1D6BA8; --primary-deep: #155A8F; --accent: #E8862D;
+    --success: #2F7D4F; --success-bg: #EAF4EE; --success-text: #137333;
+    --radius: 20px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "MiSans", "HarmonyOS Sans SC", "OPPO Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #D8D6D0; display: flex; justify-content: center; align-items: center; min-height: 100vh;
+  }
+  .phone {
+    width: 390px; height: 844px; background: var(--bg); border-radius: 44px; overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,.25); display: flex; flex-direction: column; position: relative;
+  }
+  .statusbar { height: 54px; flex: 0 0 auto; display: flex; justify-content: space-between; align-items: flex-end; padding: 0 24px 8px; font-size: 15px; font-weight: 600; color: var(--ink); }
+  .notch { position: absolute; top: 14px; left: 50%; transform: translateX(-50%); width: 120px; height: 28px; background: #232323; border-radius: 16px; }
+  .content { flex: 1; overflow-y: auto; padding: 10px 24px 30px; display: flex; flex-direction: column; }
+  .progress { display: flex; gap: 6px; margin: 4px 0 20px; }
+  .progress .bar { flex: 1; height: 6px; border-radius: 3px; background: #E5E3DC; }
+  .progress .bar.on { background: var(--primary); }
+
+  .ai-bubble {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 18px;
+    padding: 18px; font-size: 19px; font-weight: 600; color: var(--ink); line-height: 1.5;
+    display: flex; gap: 12px; align-items: flex-start;
+  }
+  .ai-avatar { width: 40px; height: 40px; border-radius: 12px; flex: 0 0 auto; background: linear-gradient(135deg, var(--primary), #3E8BC8); display: flex; align-items: center; justify-content: center; font-size: 20px; }
+  .ai-voice { margin-top: 10px; display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--ink-2); }
+
+  /* 计划确认卡 */
+  .plan-card {
+    margin-top: 18px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
+  }
+  .plan-row { display: flex; align-items: center; gap: 12px; padding: 15px 16px; border-bottom: 1px solid var(--border); }
+  .plan-row:last-child { border-bottom: none; }
+  .plan-pill { width: 40px; height: 20px; border-radius: 10px; flex: 0 0 auto; background: linear-gradient(90deg, #E8862D 50%, #F6C98B 50%); }
+  .plan-info { flex: 1; }
+  .plan-name { font-size: 18px; font-weight: 700; color: var(--ink); }
+  .plan-detail { font-size: 15px; color: var(--ink-2); margin-top: 2px; }
+
+  /* 过敏史重点 */
+  .allergy {
+    margin-top: 16px; padding: 14px 16px; background: #FDF0E3; border: 1.5px solid #F0CFA8;
+    border-radius: 14px; display: flex; gap: 12px; align-items: flex-start;
+  }
+  .allergy .a-icon { font-size: 22px; flex: 0 0 auto; }
+  .allergy .a-text { font-size: 16px; font-weight: 600; color: #9E4A0B; line-height: 1.5; }
+  .allergy .a-sub { font-size: 14px; font-weight: 400; color: #B5753A; margin-top: 2px; }
+
+  .btn { width: 100%; height: 56px; border: none; border-radius: 28px; cursor: pointer; font-family: inherit; font-size: 20px; font-weight: 700; color: #fff; background: var(--primary-deep); margin-top: auto; box-shadow: 0 4px 12px rgba(21,90,143,.35); transition: transform .12s ease-out; }
+  .btn:active { transform: scale(.98); }
+  .btn-ghost { width: 100%; height: 48px; margin-top: 12px; border-radius: 24px; background: var(--surface); color: var(--primary-deep); font-size: 18px; font-weight: 600; border: 1.5px solid var(--primary-deep); box-shadow: none; cursor: pointer; font-family: inherit; }
+</style>
+</head>
+<body>
+<div class="phone">
+  <div class="notch"></div>
+  <div class="statusbar"><span>9:41</span><span>📶 🔋</span></div>
+  <div class="content">
+    <div class="progress"><div class="bar on"></div><div class="bar on"></div><div class="bar on"></div></div>
+
+    <div class="ai-bubble">
+      <div class="ai-avatar">💊</div>
+      <div>我帮您记下了这些，您听听对不对？</div>
+    </div>
+    <div class="ai-voice">🔊 正在播报：阿莫西林，每天 3 次，每次 1 粒，饭后…</div>
+
+    <div class="plan-card">
+      <div class="plan-row">
+        <div class="plan-pill"></div>
+        <div class="plan-info">
+          <div class="plan-name">阿莫西林</div>
+          <div class="plan-detail">每天 3 次 · 每次 1 粒 · 饭后</div>
+        </div>
+      </div>
+      <div class="plan-row">
+        <div class="plan-pill" style="background:linear-gradient(90deg,#2F7D4F 50%,#A8D5B5 50%);"></div>
+        <div class="plan-info">
+          <div class="plan-name">降压药</div>
+          <div class="plan-detail">每天早上 1 次 · 每次 1 粒</div>
+        </div>
+      </div>
+      <div class="plan-row">
+        <div class="plan-pill" style="background:linear-gradient(90deg,#1D6BA8 50%,#9DC6E8 50%);"></div>
+        <div class="plan-info">
+          <div class="plan-name">钙片</div>
+          <div class="plan-detail">每天晚上 1 次 · 每次 2 片</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="allergy">
+      <div class="a-icon">⚠️</div>
+      <div class="a-text">
+        有没有过敏的药？
+        <div class="a-sub">比如青霉素过敏？这个很重要，千万不能记错</div>
+      </div>
+    </div>
+
+    <button class="btn">都对，记住了</button>
+    <button class="btn-ghost">不对，我要改</button>
+  </div>
+</div>
+</body>
+</html>

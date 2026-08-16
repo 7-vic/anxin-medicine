@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>安心用药 · 我的</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/misans-webfont@4.3.1/index.css">
+<style>
+  :root {
+    --bg: #F7F6F2; --surface: #FFFFFF; --border: #E5E3DC;
+    --ink: #232323; --ink-2: #6B6B6B;
+    --primary: #1D6BA8; --primary-deep: #155A8F; --accent: #E8862D;
+    --success: #2F7D4F; --success-bg: #EAF4EE; --success-text: #137333;
+    --radius: 20px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "MiSans", "HarmonyOS Sans SC", "OPPO Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #D8D6D0; display: flex; justify-content: center; align-items: center; min-height: 100vh;
+  }
+  .phone {
+    width: 390px; height: 844px; background: var(--bg); border-radius: 44px; overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,.25); display: flex; flex-direction: column; position: relative;
+  }
+  .statusbar { height: 54px; flex: 0 0 auto; display: flex; justify-content: space-between; align-items: flex-end; padding: 0 24px 8px; font-size: 15px; font-weight: 600; color: var(--ink); }
+  .notch { position: absolute; top: 14px; left: 50%; transform: translateX(-50%); width: 120px; height: 28px; background: #232323; border-radius: 16px; }
+  .content { flex: 1; overflow-y: auto; padding: 8px 20px 110px; }
+
+  .greeting { margin: 10px 0 16px; }
+  .greeting .hi { font-size: 22px; font-weight: 600; color: var(--ink); }
+
+  /* 用户卡 */
+  .user-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 18px; display: flex; align-items: center; gap: 14px;
+  }
+  .user-avatar { width: 60px; height: 60px; border-radius: 20px; background: linear-gradient(135deg, #FDF3E7, #F0DFC8); display: flex; align-items: center; justify-content: center; font-size: 28px; flex: 0 0 auto; }
+  .user-info { flex: 1; }
+  .user-name { font-size: 20px; font-weight: 700; color: var(--ink); }
+  .user-meta { font-size: 15px; color: var(--ink-2); margin-top: 2px; }
+  .user-edit { font-size: 15px; font-weight: 600; color: var(--primary-deep); background: none; border: none; cursor: pointer; font-family: inherit; }
+
+  .section-title { font-size: 18px; font-weight: 600; color: var(--ink); margin: 22px 0 10px; }
+
+  /* 设置列表 */
+  .list { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+  .list-row { display: flex; align-items: center; gap: 12px; padding: 15px 16px; border-bottom: 1px solid var(--border); cursor: pointer; }
+  .list-row:last-child { border-bottom: none; }
+  .list-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex: 0 0 auto; }
+  .list-text { flex: 1; font-size: 17px; font-weight: 500; color: var(--ink); }
+  .list-sub { font-size: 14px; color: var(--ink-2); }
+  .list-arrow { color: var(--ink-2); font-size: 18px; }
+
+  /* 开关 */
+  .switch { width: 48px; height: 28px; border-radius: 14px; background: var(--primary); position: relative; flex: 0 0 auto; }
+  .switch::after { content: ""; position: absolute; top: 3px; right: 3px; width: 22px; height: 22px; border-radius: 50%; background: #fff; }
+  .switch.off { background: #D8D6D0; }
+  .switch.off::after { right: auto; left: 3px; }
+
+  /* 隐私提示 */
+  .privacy { margin-top: 16px; padding: 12px 14px; background: #EFF5FB; border-radius: 12px; font-size: 14px; color: var(--primary-deep); line-height: 1.6; }
+
+  /* 底部导航 */
+  .tabbar { position: absolute; bottom: 0; left: 0; right: 0; height: 92px; background: var(--surface); border-top: 1px solid var(--border); display: flex; align-items: flex-start; justify-content: space-around; padding: 12px 12px 24px; }
+  .tab { display: flex; flex-direction: column; align-items: center; gap: 3px; width: 64px; }
+  .tab-icon { width: 24px; height: 24px; color: var(--ink-2); }
+  .tab.active .tab-icon { color: var(--primary); }
+  .tab-label { font-size: 12px; color: var(--ink-2); font-weight: 500; }
+  .tab.active .tab-label { color: var(--primary); font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="phone">
+  <div class="notch"></div>
+  <div class="statusbar"><span>9:41</span><span>📶 🔋</span></div>
+
+  <div class="content">
+    <div class="greeting"><div class="hi">我的</div></div>
+
+    <div class="user-card">
+      <div class="user-avatar">👵</div>
+      <div class="user-info">
+        <div class="user-name">王奶奶</div>
+        <div class="user-meta">78 岁 · 高血压 · 糖尿病</div>
+      </div>
+      <button class="user-edit">编辑</button>
+    </div>
+
+    <div class="section-title">用药档案</div>
+    <div class="list">
+      <div class="list-row">
+        <div class="list-icon" style="background:#EFF5FB;">💊</div>
+        <div class="list-text">我的用药档案
+          <div class="list-sub">3 种药 · 最近更新 8月10日</div>
+        </div>
+        <span class="list-arrow">›</span>
+      </div>
+      <div class="list-row">
+        <div class="list-icon" style="background:#FDF0E3;">🏥</div>
+        <div class="list-text">医院 / 医生信息
+          <div class="list-sub">社区卫生服务中心 · 张医生</div>
+        </div>
+        <span class="list-arrow">›</span>
+      </div>
+    </div>
+
+    <div class="section-title">提醒设置</div>
+    <div class="list">
+      <div class="list-row">
+        <div class="list-icon" style="background:#EAF4EE;">🔊</div>
+        <div class="list-text">语音播报</div>
+        <div class="switch"></div>
+      </div>
+      <div class="list-row">
+        <div class="list-icon" style="background:#EFF5FB;">🔁</div>
+        <div class="list-text">重复提醒
+          <div class="list-sub">未确认时每 20 分钟提醒 1 次</div>
+        </div>
+        <span class="list-arrow">›</span>
+      </div>
+      <div class="list-row">
+        <div class="list-icon" style="background:#F0EEFB;">🔔</div>
+        <div class="list-text">通知家属
+          <div class="list-sub">提醒 3 次后通知家人</div>
+        </div>
+        <div class="switch"></div>
+      </div>
+    </div>
+
+    <div class="section-title">其他</div>
+    <div class="list">
+      <div class="list-row">
+        <div class="list-icon" style="background:#EFF5FB;">👨‍👩‍👧</div>
+        <div class="list-text">家属管理</div>
+        <span class="list-arrow">›</span>
+      </div>
+      <div class="list-row">
+        <div class="list-icon" style="background:#EAF4EE;">🔒</div>
+        <div class="list-text">数据与隐私</div>
+        <span class="list-arrow">›</span>
+      </div>
+    </div>
+
+    <div class="privacy">
+      🔒 您的用药信息是敏感健康数据，我们会加密保存。只有您和您授权的家属可以查看，AI 助手只能读取，不会外传。
+    </div>
+  </div>
+
+  <!-- 底部导航 -->
+  <div class="tabbar">
+    <div class="tab">
+      <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9 21v-6h6v6"/></svg>
+      <span class="tab-label">首页</span>
+    </div>
+    <div class="tab">
+      <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+      <span class="tab-label">AI 助手</span>
+    </div>
+    <div class="tab">
+      <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <span class="tab-label">家属</span>
+    </div>
+    <div class="tab active">
+      <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <span class="tab-label">我的</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>
