@@ -7,12 +7,13 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/misans-webfont@4.3.1/index.css">
 <style>
   :root {
-    --bg: #F7F6F2; --surface: #FFFFFF; --border: #E5E3DC;
-    --ink: #232323; --ink-2: #6B6B6B;
-    --primary: #1D6BA8; --primary-deep: #155A8F; --accent: #E8862D;
-    --success: #2F7D4F; --success-bg: #EAF4EE; --success-text: #137333;
-    --warn-bg: #FDF0E3; --warn-text: #9E4A0B;
-    --radius: 20px;
+    --bg: #FBF9F5; --surface: #FFFFFF; --border: #F0EAE1;
+    --ink: #2D3142; --ink-2: #6C757D;
+    --primary: #00796B; --primary-deep: #00695C; --primary-light: #E6F6F2;
+    --success: #2F7D4F; --success-bg: #E6F4EA; --success-text: #137333;
+    --warn-bg: #FFF0E1; --warn-text: #C05F14;
+    --radius: 24px; --radius-btn: 999px;
+    --shadow-smooth: 0 10px 30px -5px rgba(45,49,66,.05), 0 4px 12px -2px rgba(45,49,66,.03);
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
@@ -52,9 +53,21 @@
   .notice .n-text { font-size: 16px; font-weight: 600; color: var(--warn-text); line-height: 1.5; flex: 1; }
   .notice .n-sub { font-size: 14px; font-weight: 400; color: #B5753A; margin-top: 2px; }
   .notice .n-btn {
-    flex: 0 0 auto; height: 40px; padding: 0 14px; border: none; border-radius: 20px; cursor: pointer;
-    background: var(--primary-deep); color: #fff; font-size: 15px; font-weight: 600; font-family: inherit;
+    flex: 0 0 auto; height: 40px; padding: 0 14px; border: none; border-radius: 999px; cursor: pointer;
+    background: var(--primary); color: #fff; font-size: 15px; font-weight: 700; font-family: inherit;
     align-self: center;
+  }
+
+  /* 家属代打卡 */
+  .proxy-row {
+    margin-top: 12px; padding: 14px 16px; background: var(--surface); border: 1.5px solid var(--border);
+    border-radius: 16px; display: flex; align-items: center; gap: 12px;
+  }
+  .proxy-text { flex: 1; font-size: 16px; font-weight: 600; color: var(--ink); line-height: 1.5; }
+  .proxy-sub { font-size: 14px; font-weight: 400; color: var(--ink-2); margin-top: 2px; }
+  .proxy-btn {
+    flex: 0 0 auto; height: 44px; padding: 0 14px; border: none; border-radius: 999px; cursor: pointer;
+    background: var(--success); color: #fff; font-size: 15px; font-weight: 700; font-family: inherit;
   }
 
   .section-title { font-size: 18px; font-weight: 600; color: var(--ink); margin: 22px 0 10px; }
@@ -82,13 +95,19 @@
   .fam-role { font-size: 14px; color: var(--ink-2); }
   .fam-add { width: 44px; height: 44px; border-radius: 50%; border: 1.5px dashed var(--primary); background: none; color: var(--primary-deep); font-size: 22px; cursor: pointer; flex: 0 0 auto; }
 
-  /* 底部导航 */
-  .tabbar { position: absolute; bottom: 0; left: 0; right: 0; height: 92px; background: var(--surface); border-top: 1px solid var(--border); display: flex; align-items: flex-start; justify-content: space-around; padding: 12px 12px 24px; }
-  .tab { display: flex; flex-direction: column; align-items: center; gap: 3px; width: 64px; }
-  .tab-icon { width: 24px; height: 24px; color: var(--ink-2); }
+  /* 悬浮胶囊 TabBar */
+  .tabbar {
+    position: absolute; bottom: 20px; left: 20px; right: 20px; height: 72px;
+    background: rgba(255,255,255,.92);
+    -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px);
+    border-radius: var(--radius-btn); box-shadow: 0 12px 32px rgba(0,0,0,.10);
+    display: flex; align-items: center; justify-content: space-around;
+  }
+  .tab { display: flex; flex-direction: column; align-items: center; gap: 3px; width: 72px; }
+  .tab-icon { width: 26px; height: 26px; color: var(--ink-2); }
   .tab.active .tab-icon { color: var(--primary); }
-  .tab-label { font-size: 12px; color: var(--ink-2); font-weight: 500; }
-  .tab.active .tab-label { color: var(--primary); font-weight: 600; }
+  .tab-label { font-size: 14px; color: var(--ink-2); font-weight: 600; }
+  .tab.active .tab-label { color: var(--primary); font-weight: 700; }
 </style>
 </head>
 <body>
@@ -118,7 +137,15 @@
         妈妈 12:30 的阿卡波糖还没有确认
         <div class="n-sub">已提醒 2 次 · 可能已经吃了但忘了点确认</div>
       </div>
-      <button class="n-btn">看看</button>
+      <button class="n-btn">打电话问问</button>
+    </div>
+
+    <div class="proxy-row">
+      <div class="proxy-text">
+        电话确认妈妈吃过了？
+        <div class="proxy-sub">帮妈妈点一下确认，她那边会更新为「家人已确认」</div>
+      </div>
+      <button class="proxy-btn">✓ 确认妈妈已吃</button>
     </div>
 
     <div class="section-title">今日确认进度（3/4）</div>
@@ -172,7 +199,7 @@
     </div>
     <div class="tab active">
       <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-      <span class="tab-label">家属</span>
+      <span class="tab-label">家人</span>
     </div>
     <div class="tab">
       <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>

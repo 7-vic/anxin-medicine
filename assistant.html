@@ -7,11 +7,11 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/misans-webfont@4.3.1/index.css">
 <style>
   :root {
-    --bg: #F7F6F2; --surface: #FFFFFF; --border: #E5E3DC;
-    --ink: #232323; --ink-2: #6B6B6B;
-    --primary: #1D6BA8; --primary-deep: #155A8F; --accent: #E8862D;
-    --success: #2F7D4F; --success-bg: #EAF4EE; --success-text: #137333;
-    --radius: 20px;
+    --bg: #FBF9F5; --surface: #FFFFFF; --border: #F0EAE1;
+    --ink: #2D3142; --ink-2: #6C757D;
+    --primary: #00796B; --primary-deep: #00695C; --primary-light: #E6F6F2;
+    --success: #2F7D4F; --success-bg: #E6F4EA; --success-text: #137333;
+    --radius: 24px; --radius-btn: 999px;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
@@ -58,10 +58,10 @@
   }
   .input-field::placeholder { color: var(--ink-2); }
   .mic-btn {
-    width: 48px; height: 48px; border-radius: 50%; border: none; cursor: pointer;
-    background: var(--primary-deep); color: #fff; font-size: 22px; flex: 0 0 auto;
+    width: 52px; height: 52px; border-radius: 50%; border: none; cursor: pointer;
+    background: linear-gradient(135deg, #00897B, #00695C); color: #fff; font-size: 22px; flex: 0 0 auto;
     display: flex; align-items: center; justify-content: center;
-    transition: transform .12s ease-out;
+    transition: all .25s cubic-bezier(.34,1.56,.64,1);
   }
   .mic-btn:active { transform: scale(.95); }
 </style>
@@ -92,8 +92,8 @@
     </div>
     <div class="msg user">那我能和降压药一起吃吗？</div>
     <div class="msg ai">
-      您的档案里，阿莫西林是 <b>饭后</b>，降压药是 <b>早上空腹</b>，两个时间不冲突。
-      <div class="boundary">⚠️ 关于"能不能同服"，这个需要药师判断，我建议您问一下开药的医生更放心。</div>
+      小安查到：阿莫西林建议 <b>饭后</b> 吃，降压药建议 <b>空腹</b> 吃。
+      <div class="boundary">⚠️ 关于这两种药能不能一起用，这是医生和药师才能判断的。请一定要咨询医生或药师，小安不能帮您做决定。</div>
     </div>
   </div>
 

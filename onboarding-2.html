@@ -7,11 +7,11 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/misans-webfont@4.3.1/index.css">
 <style>
   :root {
-    --bg: #F7F6F2; --surface: #FFFFFF; --border: #E5E3DC;
-    --ink: #232323; --ink-2: #6B6B6B;
-    --primary: #1D6BA8; --primary-deep: #155A8F; --accent: #E8862D;
-    --success: #2F7D4F; --success-bg: #EAF4EE; --success-text: #137333;
-    --radius: 20px;
+    --bg: #FBF9F5; --surface: #FFFFFF; --border: #F0EAE1;
+    --ink: #2D3142; --ink-2: #6C757D;
+    --primary: #00796B; --primary-deep: #00695C; --primary-light: #E6F6F2;
+    --success: #2F7D4F; --success-bg: #E6F4EA; --success-text: #137333;
+    --radius: 24px; --radius-btn: 999px;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
@@ -52,10 +52,10 @@
   .mic-area { margin: 32px auto 0; text-align: center; }
   .mic-btn {
     width: 96px; height: 96px; border-radius: 50%; border: none; cursor: pointer;
-    background: var(--primary-deep); color: #fff; font-size: 40px;
-    box-shadow: 0 8px 24px rgba(21,90,143,.4);
+    background: linear-gradient(135deg, #00897B, #00695C); color: #fff; font-size: 40px;
+    box-shadow: 0 12px 24px -6px rgba(0,121,107,.35);
     display: flex; align-items: center; justify-content: center;
-    margin: 0 auto; transition: transform .12s ease-out;
+    margin: 0 auto; transition: all .25s cubic-bezier(.34,1.56,.64,1);
   }
   .mic-btn:active { transform: scale(.95); }
   .mic-hint { margin-top: 14px; font-size: 17px; font-weight: 600; color: var(--ink); }
@@ -89,8 +89,8 @@
   .result-edit { font-size: 16px; font-weight: 600; color: var(--primary-deep); background: none; border: none; cursor: pointer; font-family: inherit; }
   .result-note { margin-top: 8px; font-size: 15px; color: var(--success-text); font-weight: 600; }
 
-  .btn { width: 100%; height: 56px; border: none; border-radius: 28px; cursor: pointer; font-family: inherit; font-size: 20px; font-weight: 700; color: #fff; background: var(--primary-deep); margin-top: 24px; box-shadow: 0 4px 12px rgba(21,90,143,.35); transition: transform .12s ease-out; }
-  .btn:active { transform: scale(.98); }
+  .btn { width: 100%; height: 60px; border: none; border-radius: var(--radius-btn); cursor: pointer; font-family: inherit; font-size: 21px; font-weight: 700; color: #fff; background: linear-gradient(135deg, #00897B, #00695C); margin-top: 24px; box-shadow: 0 12px 24px -6px rgba(0,121,107,.3); transition: all .25s cubic-bezier(.34,1.56,.64,1); }
+  .btn:active { transform: scale(.96); }
 </style>
 </head>
 <body>

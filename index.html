@@ -7,183 +7,137 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/misans-webfont@4.3.1/index.css">
 <style>
   :root {
-    --bg: #F7F6F2;
-    --surface: #FFFFFF;
-    --border: #E5E3DC;
-    --ink: #232323;
-    --ink-2: #6B6B6B;
-    --primary: #1D6BA8;
-    --primary-deep: #155A8F;
-    --accent: #E8862D;
-    --success: #2F7D4F;
-    --success-bg: #EAF4EE;
-    --success-text: #137333;
-    --radius: 20px;
+    --bg: #FBF9F5; --card: #FFFFFF; --border-soft: #F0EAE1;
+    --ink: #2D3142; --ink-2: #6C757D;
+    --primary: #00796B; --primary-deep: #00695C; --primary-glow: rgba(0,121,107,.28);
+    --primary-light: #E6F6F2;
+    --warning: #FF9F43; --warning-light: #FFF0E1; --warning-text: #C05F14;
+    --success: #2F7D4F; --success-bg: #E6F4EA; --success-text: #137333;
+    --radius-card: 24px; --radius-btn: 999px;
+    --shadow-smooth: 0 10px 30px -5px rgba(45,49,66,.05), 0 4px 12px -2px rgba(45,49,66,.03);
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    font-family: "MiSans", "HarmonyOS Sans SC", "OPPO Sans", "PingFang SC", "Microsoft YaHei", -apple-system, sans-serif;
-    background: #D8D6D0;
-    display: flex; justify-content: center; align-items: center;
-    min-height: 100vh;
+    font-family: "MiSans", "HarmonyOS Sans SC", "OPPO Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #E8E4DC; display: flex; justify-content: center; align-items: center; min-height: 100vh;
   }
   .phone {
-    width: 390px; height: 844px;
-    background: var(--bg);
-    border-radius: 44px;
-    overflow: hidden;
-    box-shadow: 0 20px 60px rgba(0,0,0,.25);
-    display: flex; flex-direction: column;
-    position: relative;
+    width: 390px; height: 844px; background: var(--bg); border-radius: 44px; overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,.25); display: flex; flex-direction: column; position: relative;
   }
-  .statusbar {
-    height: 54px; flex: 0 0 auto;
-    display: flex; justify-content: space-between; align-items: flex-end;
-    padding: 0 24px 8px;
-    font-size: 15px; font-weight: 600; color: var(--ink);
-  }
-  .notch { position: absolute; top: 14px; left: 50%; transform: translateX(-50%);
-    width: 120px; height: 28px; background: #232323; border-radius: 16px; }
+  .statusbar { height: 54px; flex: 0 0 auto; display: flex; justify-content: space-between; align-items: flex-end; padding: 0 24px 8px; font-size: 15px; font-weight: 600; color: var(--ink); }
+  .notch { position: absolute; top: 14px; left: 50%; transform: translateX(-50%); width: 120px; height: 28px; background: #2D3142; border-radius: 16px; }
+  .content { flex: 1; overflow-y: auto; padding: 4px 20px 130px; }
 
-  .content { flex: 1; overflow-y: auto; padding: 4px 20px 110px; }
-
-  .greeting { display: flex; justify-content: space-between; align-items: flex-end; margin: 10px 0 14px; }
-  .greeting .hi { font-size: 22px; font-weight: 600; color: var(--ink); }
-  .greeting .sub { font-size: 15px; color: var(--ink-2); margin-top: 2px; }
-  .greeting .date { font-size: 15px; color: var(--ink-2); }
+  .greeting { display: flex; justify-content: space-between; align-items: flex-end; margin: 10px 0 16px; }
+  .greeting .hi { font-size: 24px; font-weight: 700; color: var(--ink); }
+  .greeting .sub { font-size: 16px; color: var(--ink-2); margin-top: 3px; letter-spacing: .3px; }
+  .greeting .date { font-size: 16px; color: var(--ink-2); text-align: right; }
 
   /* ===== Hero 主任务卡片 ===== */
   .hero-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 22px 20px 20px;
-    box-shadow: 0 8px 24px rgba(0,0,0,.06);
+    background: var(--card); border: 2px solid var(--border-soft);
+    border-radius: var(--radius-card); padding: 24px 22px 22px;
+    box-shadow: var(--shadow-smooth); position: relative;
+  }
+  .voice-btn {
+    position: absolute; top: 18px; right: 18px;
+    width: 44px; height: 44px; border-radius: 50%; border: none; cursor: pointer;
+    background: var(--primary-light); font-size: 20px;
+    display: flex; align-items: center; justify-content: center;
   }
   .task-tag {
     display: inline-flex; align-items: center; gap: 6px;
-    background: #FDF0E3; color: #9E4A0B;
-    font-size: 15px; font-weight: 600;
-    padding: 6px 12px; border-radius: 999px;
+    background: var(--warning-light); color: var(--warning-text);
+    font-size: 16px; font-weight: 700; padding: 7px 14px; border-radius: 999px;
   }
   .task-tag::before { content: "●"; font-size: 10px; }
-  .task-name { font-size: 40px; font-weight: 700; color: var(--ink); margin-top: 14px; line-height: 1.2; }
-  .task-dose { font-size: 22px; font-weight: 600; color: var(--ink); margin-top: 4px; }
+  .task-name { font-size: 40px; font-weight: 700; color: var(--ink); margin-top: 16px; line-height: 1.2; }
+  .task-dose { font-size: 24px; font-weight: 700; color: var(--ink); margin-top: 4px; letter-spacing: .5px; }
 
-  /* 药盒视觉区：突出图片，看图拿药 */
+  /* 药盒视觉区：看图拿药 */
   .medicine-visual-box {
     display: flex; align-items: center; gap: 16px;
-    background: #FBF8F5;
-    border-radius: 14px;
-    padding: 14px 16px;
-    margin: 18px 0 0;
+    background: #FCFAF6; border: 1px solid var(--border-soft);
+    border-radius: 18px; padding: 14px 16px; margin: 18px 0 0;
   }
   .box-img {
-    width: 72px; height: 72px; border-radius: 12px;
+    width: 72px; height: 72px; border-radius: 16px;
     background: linear-gradient(135deg, #FDF3E7, #F0DFC8);
     border: 1px solid #E4D3BC;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    gap: 5px; flex-shrink: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 6px; flex-shrink: 0;
   }
   .box-img .capsule {
     width: 46px; height: 22px;
     background: linear-gradient(90deg, #E8862D 50%, #F6C98B 50%);
-    border-radius: 11px;
-    position: relative;
+    border-radius: 11px; position: relative;
     box-shadow: inset 0 -2px 3px rgba(0,0,0,.08);
   }
-  .box-img .capsule::after {
-    content: ""; position: absolute; left: 50%; top: -2px; bottom: -2px;
-    width: 2px; background: rgba(0,0,0,.10);
-  }
+  .box-img .capsule::after { content: ""; position: absolute; left: 50%; top: -2px; bottom: -2px; width: 2px; background: rgba(0,0,0,.10); }
   .box-img .capsule-name { font-size: 12px; font-weight: 700; color: #9E4A0B; }
   .visual-hint { font-size: 19px; font-weight: 700; color: var(--ink); line-height: 1.5; }
-  .visual-hint small {
-    display: block; margin-top: 4px;
-    font-size: 17px; font-weight: 700; color: var(--primary-deep);
-  }
+  .visual-hint small { display: block; margin-top: 4px; font-size: 17px; font-weight: 700; color: var(--primary); }
 
-  /* 按钮组：上下堆叠，主按钮在下（拇指热区），防横向误触 */
-  .action-button-group {
-    display: flex; flex-direction: column; gap: 12px;
-    margin-top: 18px;
-  }
+  /* 按钮组：上下堆叠 */
+  .action-button-group { display: flex; flex-direction: column; gap: 12px; margin-top: 18px; }
   .btn {
-    width: 100%; border: none; cursor: pointer;
-    font-family: inherit;
+    width: 100%; border: none; cursor: pointer; font-family: inherit;
     display: flex; align-items: center; justify-content: center;
-    transition: transform .12s ease-out, background .12s ease-out;
+    transition: all .25s cubic-bezier(.34,1.56,.64,1);
   }
-  .btn:active { transform: scale(.98); }
+  .btn:active { transform: scale(.96); }
   .btn-secondary-repeat {
-    height: 48px;
-    background: #F0F7FF; color: var(--primary-deep);
-    border: 1.5px solid var(--primary-deep);
-    border-radius: 24px;
-    font-size: 18px; font-weight: 600;
+    height: 50px; background: var(--primary-light); color: var(--primary-deep);
+    border: 1.5px solid var(--primary); border-radius: var(--radius-btn);
+    font-size: 19px; font-weight: 700;
   }
   .btn-primary-done {
-    height: 56px;
-    background: var(--primary-deep); color: #fff;
-    border-radius: 28px;
-    font-size: 20px; font-weight: 700;
-    box-shadow: 0 4px 12px rgba(21,90,143,.35);
+    height: 60px; color: #fff; border-radius: var(--radius-btn);
+    font-size: 22px; font-weight: 700; letter-spacing: 1px;
+    background: linear-gradient(135deg, #00897B, #00695C);
+    box-shadow: 0 12px 24px -6px var(--primary-glow);
   }
-  .btn-primary-done:active { background: #0F4A78; }
 
-  /* ===== 今日计划时间轴（含药丸色点） ===== */
-  .section-title { font-size: 18px; font-weight: 600; color: var(--ink); margin: 22px 0 10px; }
-  .plan { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
-  .plan-row {
-    display: flex; align-items: center; gap: 12px;
-    padding: 13px 16px;
-    border-bottom: 1px solid var(--border);
-  }
+  /* ===== 今日计划时间轴 ===== */
+  .section-title { font-size: 19px; font-weight: 700; color: var(--ink); margin: 24px 0 12px; }
+  .plan { background: var(--card); border: 1px solid var(--border-soft); border-radius: var(--radius-card); overflow: hidden; box-shadow: var(--shadow-smooth); }
+  .plan-row { display: flex; align-items: center; gap: 14px; padding: 15px 18px; border-bottom: 1px solid var(--border-soft); }
   .plan-row:last-child { border-bottom: none; }
-  .pill-dot {
-    width: 22px; height: 22px; border-radius: 50%;
-    border: 1px solid rgba(0,0,0,.08); flex: 0 0 auto;
-  }
-  .plan-time { font-size: 17px; font-weight: 600; color: var(--ink); width: 58px; flex: 0 0 auto; }
-  .plan-name { flex: 1; font-size: 17px; color: var(--ink); }
-  /* 已吃行：灰色加深至 AA 达标（#767676 = 4.55:1） */
+  /* 药丸图形：形状+颜色区分 */
+  .pill-graphic { flex: 0 0 auto; display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; }
+  .pg-capsule { width: 26px; height: 13px; border-radius: 7px; position: relative; box-shadow: inset 0 -2px 2px rgba(0,0,0,.08); }
+  .pg-capsule::after { content: ""; position: absolute; left: 50%; top: -1px; bottom: -1px; width: 1.5px; background: rgba(0,0,0,.12); }
+  .pg-round { width: 18px; height: 18px; border-radius: 50%; box-shadow: inset 0 -2px 2px rgba(0,0,0,.08); }
+  .pg-oval { width: 26px; height: 15px; border-radius: 50%; box-shadow: inset 0 -2px 2px rgba(0,0,0,.08); }
+  .plan-time { font-size: 18px; font-weight: 700; color: var(--ink); width: 62px; flex: 0 0 auto; }
+  .plan-name { flex: 1; font-size: 18px; color: var(--ink); }
   .plan-done .plan-time, .plan-done .plan-name { color: #767676; text-decoration: line-through; }
-  .plan-now { background: #EFF5FB; }
-  .plan-now .plan-name { font-weight: 600; color: var(--primary); }
-  .plan-badge {
-    font-size: 15px; font-weight: 700;
-    padding: 4px 12px; border-radius: 12px;
-    background: var(--bg); color: var(--ink-2);
-    flex: 0 0 auto; white-space: nowrap;
-  }
-  /* 已吃：AA 达标深绿（5.2:1） */
-  .plan-done .plan-badge { background: #E6F4EA; color: var(--success-text); }
+  .plan-now { background: var(--primary-light); }
+  .plan-now .plan-name { font-weight: 700; color: var(--primary-deep); }
+  .plan-badge { font-size: 15px; font-weight: 700; padding: 5px 12px; border-radius: 12px; background: var(--bg); color: var(--ink-2); flex: 0 0 auto; white-space: nowrap; }
+  .plan-done .plan-badge { background: var(--success-bg); color: var(--success-text); }
   .plan-now .plan-badge { background: var(--primary); color: #fff; }
 
-  /* 底部导航 */
+  /* 悬浮胶囊 TabBar */
   .tabbar {
-    position: absolute; bottom: 0; left: 0; right: 0;
-    height: 92px;
-    background: var(--surface);
-    border-top: 1px solid var(--border);
-    display: flex; align-items: flex-start; justify-content: space-around;
-    padding: 12px 12px 24px;
+    position: absolute; bottom: 20px; left: 20px; right: 20px; height: 72px;
+    background: rgba(255,255,255,.92);
+    -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px);
+    border-radius: var(--radius-btn); box-shadow: 0 12px 32px rgba(0,0,0,.10);
+    display: flex; align-items: center; justify-content: space-around;
   }
-  .tab { display: flex; flex-direction: column; align-items: center; gap: 3px; width: 64px; }
-  .tab-icon { width: 24px; height: 24px; color: var(--ink-2); }
+  .tab { display: flex; flex-direction: column; align-items: center; gap: 3px; width: 72px; }
+  .tab-icon { width: 26px; height: 26px; color: var(--ink-2); }
   .tab.active .tab-icon { color: var(--primary); }
-  .tab-label { font-size: 12px; color: var(--ink-2); font-weight: 500; }
-  .tab.active .tab-label { color: var(--primary); font-weight: 600; }
+  .tab-label { font-size: 14px; color: var(--ink-2); font-weight: 600; }
+  .tab.active .tab-label { color: var(--primary); font-weight: 700; }
 </style>
 </head>
 <body>
 <div class="phone">
   <div class="notch"></div>
-  <div class="statusbar">
-    <span>9:41</span>
-    <span>📶 🔋</span>
-  </div>
+  <div class="statusbar"><span>9:41</span><span>📶 🔋</span></div>
 
   <div class="content">
     <div class="greeting">
@@ -194,54 +148,51 @@
       <div class="date">8月16日<br>周六</div>
     </div>
 
-    <!-- Hero 主任务卡片 -->
     <div class="hero-card">
+      <button class="voice-btn">🔊</button>
       <span class="task-tag">现在该吃药 · 早餐后</span>
       <div class="task-name">阿司匹林</div>
       <div class="task-dose">1 粒 · 用温水送服</div>
 
-      <!-- 药盒视觉：看图拿药 -->
       <div class="medicine-visual-box">
         <div class="box-img">
           <div class="capsule"></div>
           <span class="capsule-name">阿司匹林</span>
         </div>
         <div class="visual-hint">
-          照着药盒拿药
+          照着这个药盒拿药
           <small>吃完点【我吃好了】</small>
         </div>
       </div>
 
-      <!-- 按钮组：上下堆叠防误触 -->
       <div class="action-button-group">
         <button class="btn btn-secondary-repeat">再说一遍</button>
         <button class="btn btn-primary-done">我吃好了</button>
       </div>
     </div>
 
-    <!-- 今日计划时间轴 -->
     <div class="section-title">今天的药</div>
     <div class="plan">
       <div class="plan-row plan-done">
-        <span class="pill-dot" style="background:#C9E2F4;"></span>
+        <div class="pill-graphic"><span class="pg-capsule" style="background:linear-gradient(90deg,#9DBFD8 50%,#D6E5F0 50%);"></span></div>
         <span class="plan-time">7:30</span>
         <span class="plan-name">格列美脲</span>
         <span class="plan-badge">✓ 已吃</span>
       </div>
       <div class="plan-row plan-now">
-        <span class="pill-dot" style="background:#F6D7A8;"></span>
+        <div class="pill-graphic"><span class="pg-capsule" style="background:linear-gradient(90deg,#E8862D 50%,#F6C98B 50%);"></span></div>
         <span class="plan-time">8:00</span>
         <span class="plan-name">阿司匹林</span>
         <span class="plan-badge">现在</span>
       </div>
       <div class="plan-row">
-        <span class="pill-dot" style="background:#D9E8D0;"></span>
+        <div class="pill-graphic"><span class="pg-round" style="background:#A8D5B5;"></span></div>
         <span class="plan-time">12:30</span>
         <span class="plan-name">阿卡波糖</span>
         <span class="plan-badge">待吃</span>
       </div>
       <div class="plan-row">
-        <span class="pill-dot" style="background:#E3D6EF;"></span>
+        <div class="pill-graphic"><span class="pg-oval" style="background:#C9B8E0;"></span></div>
         <span class="plan-time">18:30</span>
         <span class="plan-name">阿托伐他汀</span>
         <span class="plan-badge">待吃</span>
@@ -249,7 +200,7 @@
     </div>
   </div>
 
-  <!-- 底部导航 -->
+  <!-- 悬浮胶囊 TabBar -->
   <div class="tabbar">
     <div class="tab active">
       <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9 21v-6h6v6"/></svg>
@@ -261,7 +212,7 @@
     </div>
     <div class="tab">
       <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-      <span class="tab-label">家属</span>
+      <span class="tab-label">家人</span>
     </div>
     <div class="tab">
       <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>

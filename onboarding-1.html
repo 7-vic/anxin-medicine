@@ -7,11 +7,12 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/misans-webfont@4.3.1/index.css">
 <style>
   :root {
-    --bg: #F7F6F2; --surface: #FFFFFF; --border: #E5E3DC;
-    --ink: #232323; --ink-2: #6B6B6B;
-    --primary: #1D6BA8; --primary-deep: #155A8F; --accent: #E8862D;
-    --success: #2F7D4F; --success-bg: #EAF4EE; --success-text: #137333;
-    --radius: 20px;
+    --bg: #FBF9F5; --surface: #FFFFFF; --border: #F0EAE1;
+    --ink: #2D3142; --ink-2: #6C757D;
+    --primary: #00796B; --primary-deep: #00695C; --primary-light: #E6F6F2;
+    --success: #2F7D4F; --success-bg: #E6F4EA; --success-text: #137333;
+    --radius: 24px; --radius-btn: 999px;
+    --shadow-smooth: 0 10px 30px -5px rgba(45,49,66,.05), 0 4px 12px -2px rgba(45,49,66,.03);
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
@@ -60,17 +61,17 @@
   .tip .t-icon { font-size: 18px; flex: 0 0 auto; }
 
   .btn {
-    width: 100%; height: 56px; border: none; border-radius: 28px; cursor: pointer;
-    font-family: inherit; font-size: 20px; font-weight: 700; color: #fff;
-    background: var(--primary-deep); margin-top: auto;
-    box-shadow: 0 4px 12px rgba(21,90,143,.35);
-    transition: transform .12s ease-out;
+    width: 100%; height: 60px; border: none; border-radius: var(--radius-btn); cursor: pointer;
+    font-family: inherit; font-size: 21px; font-weight: 700; color: #fff;
+    background: linear-gradient(135deg, #00897B, #00695C); margin-top: auto;
+    box-shadow: 0 12px 24px -6px rgba(0,121,107,.3);
+    transition: all .25s cubic-bezier(.34,1.56,.64,1);
   }
-  .btn:active { transform: scale(.98); }
+  .btn:active { transform: scale(.96); }
   .btn-ghost {
-    width: 100%; height: 48px; margin-top: 12px; border-radius: 24px;
-    background: var(--surface); color: var(--primary-deep); font-size: 18px; font-weight: 600;
-    border: 1.5px solid var(--primary-deep); box-shadow: none;
+    width: 100%; height: 50px; margin-top: 12px; border-radius: var(--radius-btn);
+    background: var(--surface); color: var(--primary-deep); font-size: 19px; font-weight: 700;
+    border: 1.5px solid var(--primary); box-shadow: none;
   }
   .foot-note { text-align: center; font-size: 15px; color: var(--ink-2); margin-top: 12px; }
 </style>
