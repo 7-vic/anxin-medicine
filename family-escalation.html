@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>安心用药 · 家属异常协同</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/misans-webfont@4.3.1/index.css">
+<style>
+  :root {
+    --bg: #FBF9F5; --surface: #FFFFFF; --border: #F0EAE1;
+    --ink: #2D3142; --ink-2: #6C757D;
+    --primary: #2E66E7; --primary-deep: #1E4FC4; --primary-light: #EFF4FF;
+    --warning: #E05A2B; --warning-light: #FFF0E1; --warning-text: #C2410C;
+    --success: #2F7D4F; --success-bg: #E6F4EA; --success-text: #137333;
+    --radius: 24px; --radius-btn: 999px;
+    --shadow-smooth: 0 10px 30px -5px rgba(45,49,66,.05), 0 4px 12px -2px rgba(45,49,66,.03);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "MiSans", "HarmonyOS Sans SC", "OPPO Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #E8E4DC; display: flex; justify-content: center; align-items: center; min-height: 100vh;
+  }
+  .phone {
+    width: 390px; height: 844px; background: var(--bg); border-radius: 44px; overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,.25); display: flex; flex-direction: column; position: relative;
+  }
+  .statusbar { height: 54px; flex: 0 0 auto; display: flex; justify-content: space-between; align-items: flex-end; padding: 0 24px 8px; font-size: 15px; font-weight: 600; color: var(--ink); }
+  .notch { position: absolute; top: 14px; left: 50%; transform: translateX(-50%); width: 120px; height: 28px; background: #2D3142; border-radius: 16px; }
+  .content { flex: 1; overflow-y: auto; padding: 16px 20px 110px; }
+
+  .header-nav { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+  .back-btn {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--surface); border: 1px solid var(--border);
+    box-shadow: 0 2px 6px rgba(0,0,0,.06);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; font-weight: 700; color: var(--ink); text-decoration: none;
+    flex: 0 0 auto;
+  }
+  .back-btn:active { transform: scale(.94); }
+  .page-title { font-size: 22px; font-weight: 700; color: var(--ink); }
+
+  /* 当前状态卡 */
+  .alert-card {
+    margin-top: 4px; padding: 14px 16px; border-radius: var(--radius);
+    background: var(--warning-light); border: 1.5px solid #F0CFA8;
+    display: flex; gap: 14px; align-items: flex-start;
+  }
+  .alert-card .a-icon { flex: 0 0 auto; }
+  .alert-card .a-main { font-size: 18px; font-weight: 700; color: var(--warning-text); line-height: 1.4; }
+  .alert-card .a-sub { font-size: 14px; font-weight: 400; color: #B5753A; margin-top: 4px; line-height: 1.5; }
+
+  /* 逐级提醒时间线 */
+  .section-title { font-size: 18px; font-weight: 700; color: var(--ink); margin: 14px 0 8px; }
+  .timeline { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px 10px; box-shadow: var(--shadow-smooth); }
+  .tl-row { display: flex; gap: 14px; position: relative; padding-bottom: 10px; }
+  .tl-row:last-child { padding-bottom: 0; }
+  .tl-dot { flex: 0 0 auto; width: 36px; display: flex; flex-direction: column; align-items: center; }
+  .tl-dot .circle { width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: #fff; }
+  .tl-dot .line { width: 2px; flex: 1; background: var(--border); }
+  .tl-body { flex: 1; padding-top: 2px; }
+  .tl-time { font-size: 14px; font-weight: 700; color: var(--ink-2); }
+  .tl-title { font-size: 17px; font-weight: 700; color: var(--ink); margin-top: 2px; }
+  .tl-desc { font-size: 14px; color: var(--ink-2); margin-top: 3px; line-height: 1.5; }
+  .c-blue { background: var(--primary); }
+  .c-orange { background: var(--warning); }
+  .c-red { background: #D93025; }
+
+  /* 原则卡 */
+  .principle { margin-top: 10px;
+    margin-top: 14px; padding: 16px; border-radius: 16px;
+    background: var(--primary-light); border-left: 4px solid var(--primary);
+  }
+  .principle .p-title { font-size: 16px; font-weight: 700; color: var(--primary-deep); }
+  .principle .p-text { font-size: 15px; color: var(--ink); margin-top: 6px; line-height: 1.6; }
+
+  /* 协助确认流程 */
+  .flow { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; box-shadow: var(--shadow-smooth); }
+  .flow-step { display: flex; align-items: center; gap: 12px; padding: 5px 0; }
+  .flow-step .num {
+    width: 32px; height: 32px; border-radius: 50%; background: var(--primary-light);
+    color: var(--primary-deep); font-weight: 700; font-size: 16px;
+    display: flex; align-items: center; justify-content: center; flex: 0 0 auto;
+  }
+  .flow-step .txt { font-size: 16px; font-weight: 600; color: var(--ink); flex: 1; }
+  .flow-arrow { text-align: center; color: var(--ink-2); font-size: 18px; line-height: 1; padding: 2px 0; }
+
+  .confirm-btn {
+    width: 100%; height: 56px; border: none; border-radius: var(--radius-btn); cursor: pointer;
+    font-family: inherit; font-size: 19px; font-weight: 700; color: #fff;
+    background: linear-gradient(135deg, #E05A2B, #BF360C);
+    box-shadow: 0 12px 24px -6px rgba(191,54,12,.3);
+    display: flex; align-items: center; justify-content: center;
+    line-height: 1; padding: 0; margin-top: 14px;
+    transition: all .25s cubic-bezier(.34,1.56,.64,1);
+  }
+  .confirm-btn:active { transform: scale(.96); }
+  .confirm-btn.done { background: linear-gradient(135deg, #2F8F5B, #1E6B42); }
+  .confirm-note { font-size: 13px; color: var(--ink-2); text-align: center; margin-top: 8px; line-height: 1.5; }
+
+  /* 免打扰 */
+  .dnd-row {
+    margin-top: 14px; padding: 16px; background: var(--surface);
+    border: 1px solid var(--border); border-radius: 16px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .dnd-text { flex: 1; }
+  .dnd-title { font-size: 17px; font-weight: 700; color: var(--ink); }
+  .dnd-sub { font-size: 14px; color: var(--ink-2); margin-top: 2px; line-height: 1.5; }
+  .switch { width: 48px; height: 28px; border-radius: 14px; background: var(--primary); position: relative; flex: 0 0 auto; cursor: pointer; }
+  .switch::after { content: ""; position: absolute; top: 3px; right: 3px; width: 22px; height: 22px; border-radius: 50%; background: #fff; }
+  .switch.off { background: #D8D6D0; }
+  .switch.off::after { right: auto; left: 3px; }
+
+  /* 记录状态 */
+  .record { margin-top: 14px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+  .rec-row { display: flex; align-items: center; gap: 12px; padding: 13px 16px; border-bottom: 1px solid var(--border); font-size: 16px; }
+  .rec-row:last-child { border-bottom: none; }
+  .rec-tag { width: 10px; height: 10px; border-radius: 50%; flex: 0 0 auto; }
+  .rec-name { flex: 1; font-weight: 600; color: var(--ink); }
+  .rec-desc { font-size: 13px; color: var(--ink-2); }
+</style>
+</head>
+<body>
+<div class="phone">
+  <div class="notch"></div>
+  <div class="statusbar"><span>9:41</span><span><svg width="18" height="12" viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="0.8" fill="#2D3142"/><rect x="5" y="5" width="3" height="7" rx="0.8" fill="#2D3142"/><rect x="10" y="2.5" width="3" height="9.5" rx="0.8" fill="#2D3142"/><rect x="15" y="0" width="3" height="12" rx="0.8" fill="#2D3142" opacity="0.3"/></svg> <svg width="26" height="12" viewBox="0 0 26 12"><rect x="0.5" y="0.5" width="21" height="11" rx="3.5" fill="none" stroke="#2D3142" stroke-width="1.2"/><rect x="2.5" y="2.5" width="14" height="7" rx="1.5" fill="#2D3142"/><rect x="23.5" y="3.5" width="2.5" height="5" rx="1.2" fill="#2D3142"/></svg></span></div>
+
+  <div class="content">
+    <div class="header-nav">
+      <a class="back-btn" href="family.html" aria-label="返回">‹</a>
+      <div class="page-title">家属异常协同</div>
+    </div>
+
+    <!-- 当前状态 -->
+    <div class="alert-card">
+      <div class="a-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.73 21a2 2 0 0 1-3.46 0"/><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/></svg></div>
+      <div>
+        <div class="a-main">妈妈的 12:30 用药暂未确认</div>
+        <div class="a-sub">已普通提醒 1 次 · 15 分钟后将语音提醒 · 30 分钟仍未确认将通知家属</div>
+      </div>
+    </div>
+
+    <!-- 逐级提醒时间线 -->
+    <div class="section-title">逐级提醒机制</div>
+    <div class="timeline">
+      <div class="tl-row">
+        <div class="tl-dot"><span class="circle c-blue">1</span><span class="line"></span></div>
+        <div class="tl-body">
+          <div class="tl-time">12:30</div>
+          <div class="tl-title">普通提醒</div>
+          <div class="tl-desc">文字 + 语音播报：奶奶，现在该吃药啦</div>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-dot"><span class="circle c-orange">2</span><span class="line"></span></div>
+        <div class="tl-body">
+          <div class="tl-time">12:45（15 分钟未确认）</div>
+          <div class="tl-title">语音提醒升级</div>
+          <div class="tl-desc">再次语音播报：您还没有确认用药，需要吃的是……</div>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-dot"><span class="circle c-red">3</span></div>
+        <div class="tl-body">
+          <div class="tl-time">13:00（30 分钟仍未确认）</div>
+          <div class="tl-title">家属介入</div>
+          <div class="tl-desc">通知家属协同处理（本页）</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 原则 -->
+    <div class="principle">
+      <div class="p-title">⚠️ 未确认 ≠ 未服药</div>
+      <div class="p-text">系统<b>不直接判断漏服</b>——老人可能已吃药只是忘点确认。系统只把「无法确认」交给下一层协同。</div>
+    </div>
+
+    <!-- 家属协助确认 -->
+    <div class="section-title">家属协助确认</div>
+    <div class="flow">
+      <div class="flow-step"><span class="num">1</span><span class="txt">打电话联系老人</span></div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step"><span class="num">2</span><span class="txt">老人说明情况</span></div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step"><span class="num">3</span><span class="txt">家属确认情况</span></div>
+    </div>
+    <button class="confirm-btn" id="confirmBtn">📞 家属协助确认</button>
+    <div class="confirm-note" id="confirmNote">电话获知 ≠ 亲眼看到服药 → 记录为「家属协助确认」而非「已确认」。</div>
+
+    <!-- 免打扰 -->
+    <div class="section-title">家属免打扰</div>
+    <div class="dnd-row">
+      <div class="dnd-text">
+        <div class="dnd-title">免打扰</div>
+        <div class="dnd-sub">不想收到实时提醒时开启<br><b>免打扰 ≠ 不记录</b>——系统仍记录：已确认 / 家属协助确认 / 未确认</div>
+      </div>
+      <div class="switch" id="dndSwitch"></div>
+    </div>
+
+    <!-- 状态记录 -->
+    <div class="section-title">记录状态</div>
+    <div class="record">
+      <div class="rec-row"><span class="rec-tag" style="background:#2F7D4F;"></span><span class="rec-name">已确认</span><span class="rec-desc">老人本人点击确认</span></div>
+      <div class="rec-row"><span class="rec-tag" style="background:#E05A2B;"></span><span class="rec-name">家属协助确认</span><span class="rec-desc">电话确认情况，非亲眼所见</span></div>
+      <div class="rec-row"><span class="rec-tag" style="background:#D93025;"></span><span class="rec-name">未确认</span><span class="rec-desc">持续无法确认，不默认漏服</span></div>
+    </div>
+  </div>
+
+<script>
+  // 家属协助确认
+  const confirmBtn = document.getElementById('confirmBtn');
+  if (confirmBtn) {
+    confirmBtn.addEventListener('click', () => {
+      confirmBtn.classList.add('done');
+      confirmBtn.textContent = '✓ 已记录：家属协助确认';
+      document.getElementById('confirmNote').textContent = '该记录会同步到老人端：显示为「家属协助确认」，不算老人本人确认。';
+    });
+  }
+  // 免打扰开关
+  const dndSwitch = document.getElementById('dndSwitch');
+  if (dndSwitch) {
+    dndSwitch.addEventListener('click', () => { dndSwitch.classList.toggle('off'); });
+  }
+</script>
+</div>
+</body>
+</html>
